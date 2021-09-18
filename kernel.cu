@@ -56,7 +56,7 @@ __global__ void matMultCuda(float* a, float* b, int n, float* c)
     c[ic + n * ty + tx] = sum;
 }
 
-void calcCuda(float* a, float* b, float* c, int N)
+double calcCuda(float* a, float* b, float* c, int N, bool flag)
 {
     clock_t start2 = clock();
     int numBytes = N * N * sizeof(float);
@@ -85,7 +85,7 @@ void calcCuda(float* a, float* b, float* c, int N)
     cudaMemcpy(adev, a, numBytes, cudaMemcpyHostToDevice);
     cudaMemcpy(bdev, b, numBytes, cudaMemcpyHostToDevice);
 
-    matMultCuda <<< blocks, threads >>> (adev, bdev, N, cdev);
+    matMultCuda << < blocks, threads >> > (adev, bdev, N, cdev);
 
     cudaMemcpy(c, cdev, numBytes, cudaMemcpyDeviceToHost);
     cudaEventRecord(stop, 0);
@@ -94,6 +94,7 @@ void calcCuda(float* a, float* b, float* c, int N)
     cudaEventElapsedTime(&gpuTime, start, stop);
 
     // print the events gpu times
+    if(flag)
     printf("Time spent executing by the GPU events: %.2f millseconds\n", gpuTime);
 
     // release resources
@@ -105,10 +106,12 @@ void calcCuda(float* a, float* b, float* c, int N)
     clock_t end2 = clock();
     double millseconds2 = (double)(end2 - start2);
     // print the gpu times
+    if (flag)
     printf("Time spent executing by the GPU: %.2f millseconds\n", millseconds2);
+    return millseconds2;
 }
 
-void calcCPU(float* a, float* b, float* c, int N)
+double calcCPU(float* a, float* b, float* c, int N)
 {
     clock_t start3 = clock();
     for (int i = 0; i < N; ++i)
@@ -124,11 +127,19 @@ void calcCPU(float* a, float* b, float* c, int N)
     double millseconds = (double)(end3 - start3);
     // print the cpu times
     printf("Time spent executing by the CPU: %.2f millseconds\n", millseconds);
+    return millseconds;
 }
 
 int main(int argc, char* argv[])
 {
-    for (int i = 6; i < 11; i++) 
+    float* a = new float[64 * 64];
+    float* b = new float[64 * 64];
+    float* cpu = new float[64 * 64];
+    float* gpu = new float[64 * 64];
+    //Run to initialize cuda
+    calcCuda(a, b, gpu, 64, false);
+    //Main
+    for (int i = 6; i < 12; i++) 
     {
         int N = pow(2, i);       // matrix size is N*N
         printf("Experiment for matrix size: %u \n", N);
@@ -141,11 +152,17 @@ int main(int argc, char* argv[])
         for (int i = 0; i < N; i++)
             for (int j = 0; j < N; j++)
             {
-                a[i] = rand()%100;
-                b[i] = rand()%100;
+                a[i * N + j] = rand()%100;
+                b[i * N + j] = rand()%100;
             }
-        calcCuda(a, b, gpu, N);
-        calcCPU(a, b, cpu, N);
+        printf("Acceleration factor: %.2f \n", calcCPU(a, b, cpu, N)/calcCuda(a, b, gpu, N, true));
+        bool rel = true;
+        for (int i = 0; i < N; i++)
+            for (int j = 0; j < N; j++)
+            {
+                if (cpu[i * N + j] != gpu[i * N + j]) { rel = false; break; }
+            }
+        printf("Relevance: %s \n", rel ? "true" : "false");
         delete a;
         delete b;
         delete cpu;
