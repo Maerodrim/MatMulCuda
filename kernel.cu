@@ -93,7 +93,7 @@ void calcCuda(float* a, float* b, float* c, int N)
     cudaEventSynchronize(stop);
     cudaEventElapsedTime(&gpuTime, start, stop);
 
-    // print the gpu times
+    // print the events gpu times
     printf("Time spent executing by the GPU events: %.2f millseconds\n", gpuTime);
 
     // release resources
@@ -104,7 +104,7 @@ void calcCuda(float* a, float* b, float* c, int N)
     cudaFree(cdev);
     clock_t end2 = clock();
     double millseconds2 = (double)(end2 - start2);
-    // print the cpu times
+    // print the gpu times
     printf("Time spent executing by the GPU: %.2f millseconds\n", millseconds2);
 }
 
