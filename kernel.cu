@@ -141,8 +141,8 @@ int main(int argc, char* argv[])
         for (int i = 0; i < N; i++)
             for (int j = 0; j < N; j++)
             {
-                a[i] = 0.0f;
-                b[i] = 1.0f;
+                a[i] = rand()%100;
+                b[i] = rand()%100;
             }
         calcCuda(a, b, gpu, N);
         calcCPU(a, b, cpu, N);
