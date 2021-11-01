@@ -3,6 +3,7 @@
 IDE: VS2019
 В ходе	эксперемента использовался R7 3700X + RTX 3070
 Time on GPU: 17.0518 ms
+Так же в репозитории есть вариант исполнения медианного фильтра на Java https://github.com/Maerodrim/Client_Lab (вторая лабораторная)
 
 Вторая лабораторная https://github.com/Maerodrim/VectorAdditionCUDA
 Язык программирования: С/С++
