@@ -1,3 +1,21 @@
+Вторая лабораторная https://github.com/Maerodrim/VectorAdditionCUDA
+Size : 1000
+CPU Time: 0.002900 ms
+GPU Time (improved): 0.020480 ms
+Size : 10000
+CPU Time: 0.027200 ms
+GPU Time (improved): 0.028672 ms
+Size : 100000
+CPU Time: 0.258100 ms
+GPU Time (improved): 0.094208 ms
+Size : 1000000
+CPU Time: 2.722100 ms
+GPU Time (improved): 0.205824 ms
+Size : 10000000
+CPU Time: 27.446700 ms
+GPU Time (improved): 1.721440 ms
+
+
 Был написан параллельный алгоритм перемножения матриц с использованием разбиение матрицы на матрицы 16*16 и работу уже с ними + использовалась shared память. 
 Алгоритм для CPU стандартный.
 Язык программирования: С/С++
