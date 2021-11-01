@@ -1,4 +1,8 @@
 Вторая лабораторная https://github.com/Maerodrim/VectorAdditionCUDA
+Язык программирования: С/С++
+IDE: VS2019
+В ходе	эксперемента использовался R7 3700X + RTX 3070
+РЕЗУЛЬТАТЫ ВЫЧИСЛЕНИЙ
 Size : 1000
 CPU Time: 0.002900 ms
 GPU Time (improved): 0.020480 ms
