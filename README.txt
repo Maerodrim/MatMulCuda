@@ -1,4 +1,4 @@
-Третья лабораторная https://github.com/Maerodrim/SaltPepper
+Третья лабораторная https://github.com/Maerodrim/SAP
 Язык программирования: С/С++
 IDE: VS2019
 В ходе	эксперемента использовался R7 3700X + RTX 3070
