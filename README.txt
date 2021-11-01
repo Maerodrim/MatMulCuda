@@ -1,3 +1,9 @@
+Третья лабораторная https://github.com/Maerodrim/SaltPepper
+Язык программирования: С/С++
+IDE: VS2019
+В ходе	эксперемента использовался R7 3700X + RTX 3070
+Time on GPU: 17.0518 ms
+
 Вторая лабораторная https://github.com/Maerodrim/VectorAdditionCUDA
 Язык программирования: С/С++
 IDE: VS2019
