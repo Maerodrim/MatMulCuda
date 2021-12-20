@@ -1,3 +1,14 @@
+Четвертая лабораторная https://github.com/Maerodrim/Pi_calc
+Язык программирования: С/С++
+IDE: VS2019
+R5 4600H + GTX 1650
+CPU Time
+3.14169
+time= 458 ms
+GPU_1 Time
+3.14169
+time = 122.026 ms
+
 Третья лабораторная https://github.com/Maerodrim/SAP
 Язык программирования: С/С++
 IDE: VS2019
